@@ -1,15 +1,32 @@
 {
   "name": "gandr",
   "version": "0.1.0",
-  "description": "Official JavaScript client for the Gandr TTS API — 116 ms first audio byte, WER below the human floor, every render watermarked",
+  "description": "Official JavaScript client for the Gandr TTS API \u2014 116 ms first audio byte, WER below the human floor, every render watermarked",
   "type": "module",
   "main": "index.js",
-  "exports": { ".": "./index.js" },
-  "files": ["index.js"],
-  "keywords": ["tts", "text-to-speech", "speech-synthesis", "voice-ai", "voice-agents", "livekit", "pipecat"],
+  "exports": {
+    ".": "./index.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "tts",
+    "text-to-speech",
+    "speech-synthesis",
+    "voice-ai",
+    "voice-agents",
+    "livekit",
+    "pipecat"
+  ],
   "license": "MIT",
   "author": "Gandr <team@gandr.ai>",
   "homepage": "https://gandr.ai",
-  "repository": { "type": "git", "url": "https://github.com/Gandr-AI/gandr.git", "directory": "js" },
-  "engines": { "node": ">=18" }
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Gandr-AI/gandr-js.git"
+  },
+  "engines": {
+    "node": ">=18"
+  }
 }

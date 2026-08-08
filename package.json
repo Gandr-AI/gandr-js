@@ -1,7 +1,7 @@
 {
   "name": "gandr",
   "version": "0.1.0",
-  "description": "Official JavaScript client for the Gandr TTS API \u2014 116 ms first audio byte, WER below the human floor, every render watermarked",
+  "description": "Official JavaScript client for the Gandr TTS API, 116 ms first audio byte, WER below the human floor, every render watermarked",
   "type": "module",
   "main": "index.js",
   "exports": {

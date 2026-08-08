@@ -77,7 +77,7 @@ try:
     g.say("...")
 except GandrError as e:
     e.status    # 401 invalid key · 402 quota spent · 400 bad input · 429 concurrency
-    e.payload   # the door's JSON, with a hint field
+    e.payload   # the API's JSON, with a hint field
 ```
 
 ## Honest limits

@@ -1,18 +1,18 @@
 /**
- * Gandr TTS — official JavaScript client. Zero dependencies, Node 18+ and browsers.
+ * Gandr TTS, official JavaScript client. Zero dependencies, Node 18+ and browsers.
  *
  *   import { Gandr } from "gandr";
  *   const g = new Gandr("gnd_...");
  *   const wav = await g.say("Your table is confirmed for Thursday at seven.");
- *   // wav is a Uint8Array of a WAV file — write it, stream it, play it.
+ *   // wav is a Uint8Array of a WAV file, write it, stream it, play it.
  *
  * Docs: https://gandr.ai/docs
  */
 
-const DOORS = [
-  "https://tts.gandr.ai", // West (primary)
-  "https://tts-nyc.gandr.ai", // NYC
-  "https://tts-eu.gandr.ai", // EU
+const ENDPOINTS = [
+  "https://tts.gandr.ai",
+  "https://tts-nyc.gandr.ai",
+  "https://tts-eu.gandr.ai",
 ];
 
 export const VOICES = Object.freeze([
@@ -24,7 +24,7 @@ export class GandrError extends Error {
   constructor(status, payload) {
     const msg = payload && typeof payload === "object" ? payload.error : payload;
     const hint = payload && typeof payload === "object" ? payload.hint : "";
-    super(`[${status}] ${msg || "request failed"}${hint ? ` — ${hint}` : ""}`);
+    super(`[${status}] ${msg || "request failed"}${hint ? `: ${hint}` : ""}`);
     this.status = status;
     this.payload = payload;
   }
@@ -33,7 +33,7 @@ export class GandrError extends Error {
 export class Gandr {
   /** One instance per API key. Doors fail over automatically. */
   constructor(apiKey, { timeout = 60000 } = {}) {
-    if (!apiKey) throw new Error("apiKey is required — get one at https://gandr.ai");
+    if (!apiKey) throw new Error("apiKey is required, get one at https://gandr.ai");
     this.apiKey = apiKey;
     this.timeout = timeout;
   }
@@ -41,10 +41,10 @@ export class Gandr {
   /**
    * Render text to a WAV file (Uint8Array).
    * text: up to 2000 characters.
-   * voice: one of VOICES. sampleRate: 8000–48000, resampled server-side.
-   * temperature: 0.1–1.2 pitch range. cfgWeight: 0.2–1.0 pacing.
-   * speed: 0.6–1.5. volume: 0.5–2.0.
-   * pronunciation: [{ text: "Nguyen", pronunciation: "win" }] — sounds-like.
+   * voice: one of VOICES. sampleRate: 8000-48000, resampled server-side.
+   * temperature: 0.1-1.2 pitch range. cfgWeight: 0.2-1.0 pacing.
+   * speed: 0.6-1.5. volume: 0.5-2.0.
+   * pronunciation: [{ text: "Nguyen", pronunciation: "win" }], sounds-like.
    */
   async say(text, {
     voice = "gandr-ava", language = "en", sampleRate = 24000,
@@ -52,7 +52,7 @@ export class Gandr {
   } = {}) {
     if (!text || !text.trim()) throw new Error("text must not be empty");
     if (text.length > 2000) {
-      throw new Error("text is over the 2000-character request cap — split it");
+      throw new Error("text is over the 2000-character request cap, split it");
     }
     const body = {
       transcript: text,
@@ -81,9 +81,9 @@ export class Gandr {
 
   async #request(method, path, body) {
     let lastError;
-    for (const door of DOORS) {
+    for (const endpoint of ENDPOINTS) {
       try {
-        const res = await fetch(door + path, {
+        const res = await fetch(endpoint + path, {
           method,
           headers: { "x-api-key": this.apiKey, "content-type": "application/json" },
           body: body ? JSON.stringify(body) : undefined,
@@ -92,15 +92,15 @@ export class Gandr {
         if (!res.ok) {
           let payload;
           try { payload = await res.json(); } catch { payload = res.statusText; }
-          throw new GandrError(res.status, payload); // a real answer — no failover
+          throw new GandrError(res.status, payload); // a real answer, no failover
         }
         return res;
       } catch (err) {
         if (err instanceof GandrError) throw err;
-        lastError = err; // door unreachable — try the next region
+        lastError = err; // unreachable, try the next endpoint
       }
     }
-    throw new GandrError(0, `all doors unreachable: ${lastError}`);
+    throw new GandrError(0, `all endpoints unreachable: ${lastError}`);
   }
 }
 

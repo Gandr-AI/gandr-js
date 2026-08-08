@@ -4,7 +4,7 @@ Official Python & JavaScript clients for the **Gandr TTS API**, text to speech b
 
 - **116 ms** to first audio byte (p50, server-side, warm), 146 ms measured over the open internet
 - **WER 1.982%** on a 1,088-line set, the human recordings score 2.171% on the same scorer
-- **$10 per million characters**, or **unlimited, unmetered** stream plans from **$150/mo** (annual)
+- **$10 a month for one million tokens** (one token is one character), or **unlimited, unmetered** stream plans from **$150/mo** (annual)
 - **Every render watermarked** (imperceptible, detectable)
 - Numbers, dates, addresses, and order IDs read back correctly
 - Automatic failover, the client handles it for you

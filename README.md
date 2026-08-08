@@ -1,13 +1,13 @@
 # gandr
 
-Official Python & JavaScript clients for the **Gandr TTS API** — text to speech built for voice agents.
+Official Python & JavaScript clients for the **Gandr TTS API**, text to speech built for voice agents.
 
-- **116 ms** to first audio byte (p50, server-side, warm) — 146 ms measured over the open internet
-- **WER 1.982%** on a 1,088-line set — the human recordings score 2.171% on the same scorer
+- **116 ms** to first audio byte (p50, server-side, warm), 146 ms measured over the open internet
+- **WER 1.982%** on a 1,088-line set, the human recordings score 2.171% on the same scorer
 - **$10 per million characters**, or **unlimited, unmetered** stream plans from **$150/mo** (annual)
 - **Every render watermarked** (imperceptible, detectable)
 - Numbers, dates, addresses, and order IDs read back correctly
-- Three regions with automatic failover — the client fails over for you
+- Three regions with automatic failover, the client fails over for you
 
 ## Install
 
@@ -23,7 +23,7 @@ npm install gandr        # Node 18+, zero dependencies
 ```python
 from gandr import Gandr
 
-g = Gandr("gnd_...")  # your API key — https://gandr.ai
+g = Gandr("gnd_...")  # your API key, https://gandr.ai
 audio = g.say("Your table for two is confirmed for Thursday at seven.")
 open("confirmation.wav", "wb").write(audio)
 ```
@@ -44,15 +44,15 @@ const wav = await g.say("Your table for two is confirmed for Thursday at seven."
 g.say(
     "Order number 4-2-7-1 ships on March 3rd.",
     voice="gandr-jenny",        # ava, dane, jenny, leo, lewis, mia
-    sample_rate=8000,           # 8000–48000, resampled server-side (telephony: 8000)
-    temperature=0.9,            # 0.1–1.2 — pitch range / melody
-    cfg_weight=0.4,             # 0.2–1.0 — pacing (lower = more spacious)
-    speed=1.1,                  # 0.6–1.5
+    sample_rate=8000,           # 8000-48000, resampled server-side (telephony: 8000)
+    temperature=0.9,            # 0.1-1.2, pitch range / melody
+    cfg_weight=0.4,             # 0.2-1.0, pacing (lower = more spacious)
+    speed=1.1,                  # 0.6-1.5
     pronunciation=[{"text": "Nguyen", "pronunciation": "win"}],
 )
 ```
 
-Omit a dial and you get the tuned default — per-voice temperature tuning included.
+Omit a dial and you get the tuned default, per-voice temperature tuning included.
 
 ## Voices
 
@@ -66,7 +66,7 @@ Omit a dial and you get the tuned default — per-voice temperature tuning inclu
 
 ## Failover
 
-The client walks West → NYC → EU on unreachable doors. A real answer — including an error — is never retried against another region, so you always see the door's own response.
+The client walks West → NYC → EU on unreachable doors. A real answer, including an error, is never retried against another region, so you always see the door's own response.
 
 ## Errors
 
@@ -82,9 +82,9 @@ except GandrError as e:
 
 ## Honest limits
 
-- One request carries up to **2,000 characters** — split longer text at sentence boundaries.
+- One request carries up to **2,000 characters**, split longer text at sentence boundaries.
 - The fleet runs always-on, so the numbers above are what you get: no cold-start lottery on the demo or the API. Overflow traffic spills to a fallback lane that can take longer on its first request.
-- The streaming WebSocket lane (`wss://tts.gandr.ai/ws`) is what voice agents should use — first audio byte in the numbers above. This SDK's `say()` returns the complete file, which suits batch and IVR work.
+- The streaming WebSocket lane (`wss://tts.gandr.ai/ws`) is what voice agents should use, first audio byte in the numbers above. This SDK's `say()` returns the complete file, which suits batch and IVR work.
 
 ## Links
 

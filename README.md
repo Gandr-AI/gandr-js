@@ -7,7 +7,7 @@ Official Python & JavaScript clients for the **Gandr TTS API**, text to speech b
 - **$10 per million characters**, or **unlimited, unmetered** stream plans from **$150/mo** (annual)
 - **Every render watermarked** (imperceptible, detectable)
 - Numbers, dates, addresses, and order IDs read back correctly
-- Three regions with automatic failover, the client fails over for you
+- Automatic failover, the client handles it for you
 
 ## Install
 
@@ -66,7 +66,7 @@ Omit a dial and you get the tuned default, per-voice temperature tuning included
 
 ## Failover
 
-The client walks West → NYC → EU on unreachable doors. A real answer, including an error, is never retried against another region, so you always see the door's own response.
+The client moves to the next endpoint when one is unreachable. A real answer, including an error, is never retried elsewhere, so you always see the response you actually got.
 
 ## Errors
 

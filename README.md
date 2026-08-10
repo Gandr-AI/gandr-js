@@ -82,7 +82,6 @@ except GandrError as e:
 ## Honest limits
 
 - One request carries up to **2,000 characters**, split longer text at sentence boundaries.
-- The fleet runs always-on, so the numbers above are what you get: no cold-start lottery on the demo or the API. Overflow traffic spills to a fallback lane that can take longer on its first request.
 - The streaming WebSocket lane (`wss://tts.gandr.ai/ws`) is what voice agents should use, first audio byte in the numbers above. This SDK's `say()` returns the complete file, which suits batch and IVR work.
 
 ## Links

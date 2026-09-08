@@ -1,6 +1,6 @@
 {
   "name": "gandr",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Official JavaScript client for the Gandr text to speech API. First audio byte in 146 ms over the open internet, 116 ms p50 first audio, server side warm. 23 languages, every render watermarked.",
   "type": "module",
   "main": "index.js",
